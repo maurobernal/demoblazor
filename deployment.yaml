@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: deploy-maurobernal-blazor
+  namespace: maurobernal
+spec:
+  selector:
+    matchLabels:
+      app: maurobernal-blazor
+  replicas: 3
+  template:
+    metadata:
+      labels:
+        app: maurobernal-blazor
+    spec:
+      containers:
+      - name: container-maurobernal-blazor
+        image: maurobernal/demoblazor:latest
+        imagePullPolicy: Always
+        resources:
+          limits:
+            memory: 500Mi
+            cpu: 500m
+          requests:
+            cpu: 100m
+            memory: 200Mi
+        ports:
+        - containerPort: 80
